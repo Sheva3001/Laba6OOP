@@ -16,15 +16,15 @@ public:
 	MyList() :TList(nullptr) {};
 	MyList(const Node<T>& obj);
 	bool isEmpty();
-	int length(); // Длина списка
-	void addToHead(T elem); // Добавление в начало
-	void addByIterator(int it, T elem); // Добавление в середину
-	void deleteFromHead(); // удаление с начала списка
-	void deleteByIterator(int it); // Удаление после заданного элемента
-	void mergeList(MyList<T>& MList); // Слияние списков
-	void mergeSortList(MyList<T>& MList); // Слияние отсортированных списков
-	void printList(); // Печать списка
-	void createFromTail(); // Создание с хвоста
+	int length(); // Р”Р»РёРЅР° СЃРїРёСЃРєР°
+	void addToHead(T elem); // Р”РѕР±Р°РІР»РµРЅРёРµ РІ РЅР°С‡Р°Р»Рѕ
+	void addByIterator(int it, T elem); // Р”РѕР±Р°РІР»РµРЅРёРµ РІ СЃРµСЂРµРґРёРЅСѓ
+	void deleteFromHead(); // СѓРґР°Р»РµРЅРёРµ СЃ РЅР°С‡Р°Р»Р° СЃРїРёСЃРєР°
+	void deleteByIterator(int it); // РЈРґР°Р»РµРЅРёРµ РїРѕСЃР»Рµ Р·Р°РґР°РЅРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+	void mergeList(MyList<T>& MList); // РЎР»РёСЏРЅРёРµ СЃРїРёСЃРєРѕРІ
+	void mergeSortList(MyList<T>& MList); // РЎР»РёСЏРЅРёРµ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹С… СЃРїРёСЃРєРѕРІ
+	void printList(); // РџРµС‡Р°С‚СЊ СЃРїРёСЃРєР°
+	void createFromTail(); // РЎРѕР·РґР°РЅРёРµ СЃ С…РІРѕСЃС‚Р°
 };
 
 template<typename T>
@@ -69,12 +69,12 @@ inline void MyList<T>::addByIterator(int it, T elem) {
 	Node<T>* pNode = TList;
 	p->data = elem;
 	p->index = it;
-	if (it == 0) { // Первый
+	if (it == 0) { // РџРµСЂРІС‹Р№
 		addToHead(elem);
 		delete p;
 		pNode = 0;
 	}
-	else if ((it < length() - 1) && (it > 0)) { // Не первый и не последний
+	else if ((it < length() - 1) && (it > 0)) { // РќРµ РїРµСЂРІС‹Р№ Рё РЅРµ РїРѕСЃР»РµРґРЅРёР№
 		while (pNode->index + 1 <= it) {
 			if (pNode->index + 1 == it) {
 				p->next = pNode->next;
@@ -85,7 +85,7 @@ inline void MyList<T>::addByIterator(int it, T elem) {
 				pNode = pNode->next;
 		}
 	}
-	else if (it == length()) { // Последний
+	else if (it == length()) { // РџРѕСЃР»РµРґРЅРёР№
 		while (pNode) {
 			if (pNode->next == 0) {
 				pNode->next = p;
@@ -124,9 +124,9 @@ template<typename T>
 inline void MyList<T>::deleteByIterator(int it) {
 	Node<T>* pNode = TList;
 	Node<T>* qNode;
-	if (it == 0) // Первый
+	if (it == 0) // РџРµСЂРІС‹Р№
 		deleteFromHead();
-	else if ((it < length() - 1) && (it > 0)) { // Не первый и не последний
+	else if ((it < length() - 1) && (it > 0)) { // РќРµ РїРµСЂРІС‹Р№ Рё РЅРµ РїРѕСЃР»РµРґРЅРёР№
 		while (pNode) {
 			if (pNode->index + 1 == it) {
 				qNode = pNode->next;
@@ -143,7 +143,7 @@ inline void MyList<T>::deleteByIterator(int it) {
 				pNode = pNode->next;
 		}
 	}
-	else if (it == length() - 1) { // Последний
+	else if (it == length() - 1) { // РџРѕСЃР»РµРґРЅРёР№
 		while (pNode) {
 			if (pNode->index + 1 == it) {
 				qNode = pNode->next;
@@ -187,23 +187,23 @@ inline void MyList<T>::mergeList(MyList<T>& MList) {
 
 template<typename T>
 inline void MyList<T>::mergeSortList(MyList<T>& MList) {
-	Node<T>* p = TList; //Ставим указатели на первый эл-т каждого списка
+	Node<T>* p = TList; //РЎС‚Р°РІРёРј СѓРєР°Р·Р°С‚РµР»Рё РЅР° РїРµСЂРІС‹Р№ СЌР»-С‚ РєР°Р¶РґРѕРіРѕ СЃРїРёСЃРєР°
 	Node<T>* q = MList.TList;
 	Node<T>* pNode;
-	if (p->data < q->data) { //Сравниваем первые эл-ты (тот список, у которого первый эл-т меньше будет "главным", к нему будут добавляться эл-ты из другого списка)
-		pNode = p; //Ставим вспомогательный указатель на меньший элемент
-		MList.TList = TList; //Указатели на оба списка теперь указывают на главный
+	if (p->data < q->data) { //РЎСЂР°РІРЅРёРІР°РµРј РїРµСЂРІС‹Рµ СЌР»-С‚С‹ (С‚РѕС‚ СЃРїРёСЃРѕРє, Сѓ РєРѕС‚РѕСЂРѕРіРѕ РїРµСЂРІС‹Р№ СЌР»-С‚ РјРµРЅСЊС€Рµ Р±СѓРґРµС‚ "РіР»Р°РІРЅС‹Рј", Рє РЅРµРјСѓ Р±СѓРґСѓС‚ РґРѕР±Р°РІР»СЏС‚СЊСЃСЏ СЌР»-С‚С‹ РёР· РґСЂСѓРіРѕРіРѕ СЃРїРёСЃРєР°)
+		pNode = p; //РЎС‚Р°РІРёРј РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РјРµРЅСЊС€РёР№ СЌР»РµРјРµРЅС‚
+		MList.TList = TList; //РЈРєР°Р·Р°С‚РµР»Рё РЅР° РѕР±Р° СЃРїРёСЃРєР° С‚РµРїРµСЂСЊ СѓРєР°Р·С‹РІР°СЋС‚ РЅР° РіР»Р°РІРЅС‹Р№
 	}
 	else {
 		pNode = q;
 		swap(p, q);
 		TList = MList.TList;
 	}
-	while ((p->next != NULL) && (q->next != NULL)) { //Этот цикл работает пока указатель не окажется на последнем элементе одного из списков
-		if (p->next->data > q->data) {           //Если элемент из "главного" списка, который стоит после эл-та на кот. указатель "р", больше, чем элемент
-			pNode = q;                       //второго списка на котором стоит указатель "q", то эл-т "q" вставляется между p и p->next,
-			q = p->next;                     //а указатель p переходит на p->next
-			p->next = pNode;                 //Если же элемент "p->next" меньше, чем "q", то "p" переставляется на "p->next" и цикл повторяется
+	while ((p->next != NULL) && (q->next != NULL)) { //Р­С‚РѕС‚ С†РёРєР» СЂР°Р±РѕС‚Р°РµС‚ РїРѕРєР° СѓРєР°Р·Р°С‚РµР»СЊ РЅРµ РѕРєР°Р¶РµС‚СЃСЏ РЅР° РїРѕСЃР»РµРґРЅРµРј СЌР»РµРјРµРЅС‚Рµ РѕРґРЅРѕРіРѕ РёР· СЃРїРёСЃРєРѕРІ
+		if (p->next->data > q->data) {           //Р•СЃР»Рё СЌР»РµРјРµРЅС‚ РёР· "РіР»Р°РІРЅРѕРіРѕ" СЃРїРёСЃРєР°, РєРѕС‚РѕСЂС‹Р№ СЃС‚РѕРёС‚ РїРѕСЃР»Рµ СЌР»-С‚Р° РЅР° РєРѕС‚. СѓРєР°Р·Р°С‚РµР»СЊ "СЂ", Р±РѕР»СЊС€Рµ, С‡РµРј СЌР»РµРјРµРЅС‚
+			pNode = q;                       //РІС‚РѕСЂРѕРіРѕ СЃРїРёСЃРєР° РЅР° РєРѕС‚РѕСЂРѕРј СЃС‚РѕРёС‚ СѓРєР°Р·Р°С‚РµР»СЊ "q", С‚Рѕ СЌР»-С‚ "q" РІСЃС‚Р°РІР»СЏРµС‚СЃСЏ РјРµР¶РґСѓ p Рё p->next,
+			q = p->next;                     //Р° СѓРєР°Р·Р°С‚РµР»СЊ p РїРµСЂРµС…РѕРґРёС‚ РЅР° p->next
+			p->next = pNode;                 //Р•СЃР»Рё Р¶Рµ СЌР»РµРјРµРЅС‚ "p->next" РјРµРЅСЊС€Рµ, С‡РµРј "q", С‚Рѕ "p" РїРµСЂРµСЃС‚Р°РІР»СЏРµС‚СЃСЏ РЅР° "p->next" Рё С†РёРєР» РїРѕРІС‚РѕСЂСЏРµС‚СЃСЏ
 			pNode = pNode->next;
 			p->next->next = q;
 			swap(q, pNode);
@@ -215,7 +215,7 @@ inline void MyList<T>::mergeSortList(MyList<T>& MList) {
 			p = p->next;
 		}
 	}
-	if (q->next == NULL) {   //После цикла, если у нас остаётся один эл-т из второго списка, мы сравниваем его и вставляем в нужное место
+	if (q->next == NULL) {   //РџРѕСЃР»Рµ С†РёРєР»Р°, РµСЃР»Рё Сѓ РЅР°СЃ РѕСЃС‚Р°С‘С‚СЃСЏ РѕРґРёРЅ СЌР»-С‚ РёР· РІС‚РѕСЂРѕРіРѕ СЃРїРёСЃРєР°, РјС‹ СЃСЂР°РІРЅРёРІР°РµРј РµРіРѕ Рё РІСЃС‚Р°РІР»СЏРµРј РІ РЅСѓР¶РЅРѕРµ РјРµСЃС‚Рѕ
 		if (p->next->data > q->data) {
 			pNode = p->next;
 			p->next = q;
@@ -226,7 +226,7 @@ inline void MyList<T>::mergeSortList(MyList<T>& MList) {
 		}
 
 	}
-	if (p->next == NULL) { //Если у нас закончился главный список и во втором осталось больше одного эл-та мы присоединяем остаток второго списка в конец "главного"
+	if (p->next == NULL) { //Р•СЃР»Рё Сѓ РЅР°СЃ Р·Р°РєРѕРЅС‡РёР»СЃСЏ РіР»Р°РІРЅС‹Р№ СЃРїРёСЃРѕРє Рё РІРѕ РІС‚РѕСЂРѕРј РѕСЃС‚Р°Р»РѕСЃСЊ Р±РѕР»СЊС€Рµ РѕРґРЅРѕРіРѕ СЌР»-С‚Р° РјС‹ РїСЂРёСЃРѕРµРґРёРЅСЏРµРј РѕСЃС‚Р°С‚РѕРє РІС‚РѕСЂРѕРіРѕ СЃРїРёСЃРєР° РІ РєРѕРЅРµС† "РіР»Р°РІРЅРѕРіРѕ"
 		p->next = q;
 	}
 	p = TList;
@@ -242,12 +242,12 @@ template<typename T>
 inline void MyList<T>::createFromTail() {
 	Node<T>* tail = TList;
 	int n;
-	cout << "Введите кол-во элементов: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»-РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
 	cin >> n;
 	for (int i = 0; i < n; i++)
 	{
 		T elem;
-		cout << endl << "Введите элемент: ";
+		cout << endl << "Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚: ";
 		cin >> elem;
 		addByIterator(i, elem);
 	}
