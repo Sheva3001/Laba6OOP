@@ -4,27 +4,27 @@ using namespace std;
 
 int main() {
 	setlocale(LC_ALL, "Russian");
-	MyList<string> A; MyList<string> B;
-	int number = 0; int iterator = 0; string value;
-	cout << "============== Ñïèñîê ¹1 ==============" << endl;
+	MyList<int> A; MyList<int> B;
+	int number = 0; int iterator = 0; int value = 0;
+	cout << "============== Ð¡Ð¿Ð¸ÑÐ¾Ðº â„–1 ==============" << endl;
 	A.createFromTail();
-	cout << "============== Ñïèñîê ¹2 ==============" << endl;
+	cout << "============== Ð¡Ð¿Ð¸ÑÐ¾Ðº â„–2 ==============" << endl;
 	B.createFromTail();
 	int command = -1;
 	while (command != 0) {
-		cout << "============== Âûáåðèòå äåéñòâèå ==============" << endl
-			<< "1. Äîáàâëåíèå ïî èòåðàòîðó" << endl
-			<< "2. Óäàëåíèå ïî èòåðàòîðó" << endl
-			<< "3. Ñëèÿíèå ñïèñêîâ" << endl
-			<< "4. Ñëèÿíèå óïîðÿäî÷åííûõ ñïèñêîâ" << endl
-			<< "5. Ïå÷àòü ñïèñêà" << endl
-			<< "0. Âûõîä" << endl
+		cout << "============== Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ ==============" << endl
+			<< "1. Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾ Ð¸Ñ‚ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñƒ" << endl
+			<< "2. Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð¿Ð¾ Ð¸Ñ‚ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ñƒ" << endl
+			<< "3. Ð¡Ð»Ð¸ÑÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ¾Ð²" << endl
+			<< "4. Ð¡Ð»Ð¸ÑÐ½Ð¸Ðµ ÑƒÐ¿Ð¾Ñ€ÑÐ´Ð¾Ñ‡ÐµÐ½Ð½Ñ‹Ñ… ÑÐ¿Ð¸ÑÐºÐ¾Ð²" << endl
+			<< "5. ÐŸÐµÑ‡Ð°Ñ‚ÑŒ ÑÐ¿Ð¸ÑÐºÐ°" << endl
+			<< "0. Ð’Ñ‹Ñ…Ð¾Ð´" << endl
 			<< "==============================================" << endl;
 		cin >> command;
 		switch (command)
 		{
 		case 1:
-			cout << "Ââåäèòå íîìåð ñïèñêà, èòåðàòîð è çíà÷åíèå:" << endl;
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÐ¿Ð¸ÑÐºÐ°, Ð¸Ñ‚ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ð¸ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ:" << endl;
 			cin >> number; cin >> iterator; cin >> value;
 			if (number == 1) {
 				A.addByIterator(iterator, value);
@@ -36,7 +36,7 @@ int main() {
 			}
 			break;
 		case 2:
-			cout << "Ââåäèòå íîìåð ñïèñêà è èòåðàòîð:" << endl;
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÐ¿Ð¸ÑÐºÐ° Ð¸ Ð¸Ñ‚ÐµÑ€Ð°Ñ‚Ð¾Ñ€:" << endl;
 			cin >> number; cin >> iterator;
 			if (number == 1) {
 				A.deleteByIterator(iterator);
@@ -48,7 +48,7 @@ int main() {
 			}
 			break;
 		case 3:
-			cout << "Âûáåðèòå ïîðÿäîê ñëèÿíèÿ:" << endl
+			cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð¾Ñ€ÑÐ´Ð¾Ðº ÑÐ»Ð¸ÑÐ½Ð¸Ñ:" << endl
 				<< "1. 1 - 2" << endl
 				<< "2. 2 - 1" << endl;
 			cin >> number;
@@ -66,7 +66,7 @@ int main() {
 			A.printList();
 			break;
 		case 5:
-			cout << "Ââåäèòå íîìåð ñïèñêà:" << endl;
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÐ¿Ð¸ÑÐºÐ°:" << endl;
 			cin >> number;
 			if (number == 1) {
 				A.printList();
